@@ -4,5 +4,5 @@
 
 - [x] Router
 - [x] Authentication
-- [ ] Arch.
+- [x] Arch.
 - [ ] Styles
