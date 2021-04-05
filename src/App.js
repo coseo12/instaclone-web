@@ -6,6 +6,7 @@ import { isLoggedInVar, darkModeVar } from './apollo';
 import Home from './screens/Home';
 import Login from './screens/Login';
 import NotFound from './screens/NotFound';
+import SignUp from './screens/SignUp';
 import { darkTheme, GlobalStyles, lightTheme } from './styles';
 
 const App = () => {
@@ -20,6 +21,11 @@ const App = () => {
           <Route exact path="/">
             {isLoggedIn ? <Home /> : <Login />}
           </Route>
+          {isLoggedIn ? null : (
+            <Route path="/sign-up">
+              <SignUp />
+            </Route>
+          )}
           <Route>
             <NotFound />
           </Route>

@@ -4,6 +4,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { WhiteBox } from '../styles';
 
@@ -29,28 +30,32 @@ const TopBox = styled(WhiteBox)`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    input {
-      width: 100%;
-      border-radius: 3px;
-      padding: 7px;
-      background-color: #fafafa;
-      border: 0.5px solid rgb(219, 219, 219);
-      margin-top: 5px;
-      box-sizing: border-box;
-      &::placeholder {
-        font-size: 12px;
-      }
-      &:last-child {
-        border: none;
-        margin-top: 12px;
-        background-color: #0095f6;
-        color: white;
-        text-align: center;
-        padding: 6px 0px;
-        font-weight: 600;
-      }
-    }
   }
+`;
+
+const Input = styled.input`
+  width: 100%;
+  border-radius: 3px;
+  padding: 7px;
+  background-color: #fafafa;
+  border: 0.5px solid ${props => props.theme.borderColor};
+  margin-top: 5px;
+  box-sizing: border-box;
+  &::placeholder {
+    font-size: 12px;
+  }
+`;
+
+const Button = styled.input`
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  margin-top: 12px;
+  background-color: ${props => props.theme.accent};
+  color: white;
+  text-align: center;
+  padding: 6px 0px;
+  font-weight: 600;
 `;
 
 const BottomBox = styled(WhiteBox)`
@@ -58,7 +63,8 @@ const BottomBox = styled(WhiteBox)`
   text-align: center;
   a {
     font-weight: 600;
-    color: #0095f6;
+    margin-left: 5px;
+    color: ${props => props.theme.accent};
   }
 `;
 
@@ -77,11 +83,12 @@ const Separator = styled.div`
   div {
     width: 100%;
     height: 2px;
-    background-color: rgb(219, 219, 219);
+    background-color: ${props => props.theme.borderColor};
   }
   span {
     margin: 0px 10px;
     color: #8e8e8e;
+    font-size: 12px;
     font-weight: 600;
   }
 `;
@@ -103,9 +110,9 @@ const Login = () => {
             <FontAwesomeIcon icon={faInstagram} size="3x" />
           </div>
           <form>
-            <input type="text" name="username" placeholder="Username" />
-            <input type="password" name="password" placeholder="Password" />
-            <input type="submit" value="Log In" />
+            <Input type="text" name="username" placeholder="Username" />
+            <Input type="password" name="password" placeholder="Password" />
+            <Button type="submit" value="Log In" />
           </form>
           <Separator>
             <div></div>
@@ -119,7 +126,7 @@ const Login = () => {
         </TopBox>
         <BottomBox>
           <span>Don't have an account?</span>
-          <a href="#test"> Sign up</a>
+          <Link to="/sign-up">Sign up</Link>
         </BottomBox>
       </Wrapper>
     </Container>
