@@ -8,8 +8,9 @@ import Button from '../components/auth/Button';
 import FormBox from '../components/auth/FormBox';
 import Input from '../components/auth/Input';
 import Separator from '../components/auth/Separator';
-import { FatLink } from '../components/shared';
+import { FatLink } from '../components/shared/styled';
 import routes from '../routes';
+import PageTitle from '../components/shared/PageTitle';
 
 const HedaderContainer = styled.div`
   display: flex;
@@ -26,6 +27,7 @@ const Subtitle = styled(FatLink)`
 const SignUp = () => {
   return (
     <AuthLayout>
+      <PageTitle title="Sign up" />
       <FormBox>
         <HedaderContainer>
           <FontAwesomeIcon icon={faInstagram} size="3x" />
