@@ -1,9 +1,9 @@
 import React from 'react';
-import { isLoggedInVar } from '../apollo';
+import { logUserOut } from '../apollo';
 
 const Home = () => {
   const logout = () => {
-    isLoggedInVar(false);
+    logUserOut();
   };
 
   return (
