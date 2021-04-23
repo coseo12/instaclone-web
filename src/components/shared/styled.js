@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const BaseBox = styled.div`
-  background-color: white;
-  border: 1px solid rgb(219, 219, 219);
+  background-color: ${props => props.theme.bgColor};
+  border: 1px solid ${props => props.theme.borderColor};
   width: 100%;
 `;
 
