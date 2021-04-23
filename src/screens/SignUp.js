@@ -65,13 +65,18 @@ const SignUp = () => {
   });
 
   const onCompleted = data => {
+    const { username, password } = getValues();
     const {
       createAccount: { ok, error },
     } = data;
     if (!ok) {
       return setError('result', { message: error });
     }
-    history.push(routes.home);
+    history.push(routes.home, {
+      message: 'Account created. Please log in.',
+      username,
+      password,
+    });
   };
 
   const [createAccount, { loading }] = useMutation(CREATE_ACCOUNT_MUTATION, {
