@@ -5,6 +5,7 @@ import {
   faHeart,
   faPaperPlane,
 } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as SolidHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import gql from 'graphql-tag';
 import React from 'react';
@@ -26,6 +27,7 @@ const FEED_QUERY = gql`
       comments
       createdAt
       isMine
+      isLiked
     }
   }
 `;
@@ -63,6 +65,9 @@ const PhotoActions = styled.div`
     display: flex;
     align-items: center;
   }
+  svg {
+    font-size: 20px;
+  }
 `;
 
 const PhotoAction = styled.div`
@@ -80,7 +85,7 @@ const Home = () => {
   return (
     <div>
       {data?.seeFeed?.map(photo => (
-        <PhotoContainer>
+        <PhotoContainer key={photo.id}>
           <PhotoHeader>
             <Avatar lg={true} url={photo.user.avatar} />
             <Username>{photo.user.username}</Username>
@@ -90,17 +95,20 @@ const Home = () => {
             <PhotoActions>
               <div>
                 <PhotoAction>
-                  <FontAwesomeIcon icon={faHeart} size="2x" />
+                  <FontAwesomeIcon
+                    style={{ color: photo.isLiked ? 'tomato' : 'inherit' }}
+                    icon={photo.isLiked ? SolidHeart : faHeart}
+                  />
                 </PhotoAction>
                 <PhotoAction>
-                  <FontAwesomeIcon icon={faComment} size="2x" />
+                  <FontAwesomeIcon icon={faComment} />
                 </PhotoAction>
                 <PhotoAction>
-                  <FontAwesomeIcon icon={faPaperPlane} size="2x" />
+                  <FontAwesomeIcon icon={faPaperPlane} />
                 </PhotoAction>
               </div>
               <div>
-                <FontAwesomeIcon icon={faBookmark} size="2x" />
+                <FontAwesomeIcon icon={faBookmark} />
               </div>
             </PhotoActions>
             <Likes>
