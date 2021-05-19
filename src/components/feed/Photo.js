@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Avatar from '../shared/Avatar';
 import { FatText } from '../shared/styled';
+import Comments from './Comments';
 
 const TOGGLE_LIKE_MUTATION = gql`
   mutation toggleLike($id: Int!) {
@@ -70,7 +71,16 @@ const Likes = styled(FatText)`
   margin-top: 15px;
 `;
 
-const Photo = ({ id, user, file, isLiked, likes }) => {
+const Photo = ({
+  id,
+  user,
+  file,
+  isLiked,
+  likes,
+  caption,
+  comments,
+  commentNumber,
+}) => {
   const updateToggleLike = (cache, results) => {
     const {
       data: {
@@ -132,6 +142,12 @@ const Photo = ({ id, user, file, isLiked, likes }) => {
           </div>
         </PhotoActions>
         <Likes>{likes === 1 ? '1 likes' : `${likes} likes`}</Likes>
+        <Comments
+          author={user.username}
+          caption={caption}
+          comments={comments}
+          commentNumber={commentNumber}
+        />
       </PhotoData>
     </PhotoContainer>
   );
@@ -143,6 +159,20 @@ Photo.propTypes = {
     avatar: PropTypes.string,
     username: PropTypes.string.isRequired,
   }),
+  commentNumber: PropTypes.number.isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      payload: PropTypes.string,
+      isMine: PropTypes.bool.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      user: PropTypes.shape({
+        username: PropTypes.string.isRequired,
+        avatar: PropTypes.string,
+      }),
+    })
+  ),
+  caption: PropTypes.string,
   file: PropTypes.string.isRequired,
   isLiked: PropTypes.bool.isRequired,
   likes: PropTypes.number.isRequired,
