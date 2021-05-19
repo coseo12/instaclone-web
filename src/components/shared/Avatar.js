@@ -14,7 +14,8 @@ const Img = styled.img`
 
 const Avatar = ({ url, lg = false }) => {
   if (!url) {
-    url = 'https://cdn.pixabay.com/photo/2020/07/06/01/33/sky-5375005__480.jpg';
+    url =
+      'https://images.unsplash.com/photo-1621356312116-901a583826fe?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60';
   }
   return (
     <SAvatar lg={lg}>{url !== null ? <Img src={url} alt="" /> : null}</SAvatar>
