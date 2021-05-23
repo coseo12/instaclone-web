@@ -9,6 +9,7 @@ import { faHeart as SolidHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Avatar from '../shared/Avatar';
 import { FatText } from '../shared/styled';
@@ -111,8 +112,12 @@ const Photo = ({
   return (
     <PhotoContainer key={id}>
       <PhotoHeader>
-        <Avatar lg={true} url={user.avatar} />
-        <Username>{user.username}</Username>
+        <Link to={`users/${user.username}`}>
+          <Avatar lg={true} url={user.avatar} />
+        </Link>
+        <Link to={`users/${user.username}`}>
+          <Username>{user.username}</Username>
+        </Link>
       </PhotoHeader>
       <PhotoFile src={file} alt="" />
       <PhotoData>

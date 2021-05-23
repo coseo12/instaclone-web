@@ -10,6 +10,7 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import NotFound from './screens/NotFound';
 import SignUp from './screens/SignUp';
+import Profile from './screens/Profile';
 import { darkTheme, GlobalStyles, lightTheme } from './styles';
 
 const App = () => {
@@ -37,6 +38,9 @@ const App = () => {
                   <SignUp />
                 </Route>
               )}
+              <Route path={`/users/:username`}>
+                <Profile />
+              </Route>
               <Route>
                 <NotFound />
               </Route>
